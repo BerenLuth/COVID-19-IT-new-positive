@@ -1,9 +1,7 @@
 #!/bin/bash
-cd COVID-19
 echo "downloading the latest data..."
 echo ""
-git pull
-cd ..
+git submodule update COVID-19
 
 echo ""
 echo "Launching r script..."
