@@ -15,6 +15,7 @@ png(filename="export.png", width = 1000, height=650, units="px")
 
 #ylim=x(0,40000) to change the plot scale to include number of tampons otherwise too big
 plot(cov.ts, ylab=ylab, main=main, xlab=xlab, type='l', xaxs='i')
+#plot(cov.ts, ylab=ylab, main=main, xlab=xlab, type='l', xaxs='i', ylim=c(0,60000))
 axis(1, covid$data, format(covid$data, "%b %d"))
 grid()
 #points(covid$totale_casi)
@@ -23,7 +24,7 @@ fit4<-lm(cov.ts~poly(tt,degree=3,raw=TRUE))
 lines(tt,predict(fit4),col="blue",lwd=1, type="c")
 lines(covid$dimessi_guariti,col="green",lwd=2, type="l")
 lines(covid$deceduti,col="red",lwd=2, type="l")
-#lines(covid$tamponi,col="yellow",lwd=2, type="l")
+lines(covid$tamponi,col="purple",lwd=2, type="l")
 
 # legend("bottomright", legend = "First day: 24/02/2020")
 
