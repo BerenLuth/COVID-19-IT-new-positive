@@ -11,7 +11,7 @@ main <- 'Daily data of "New positive" cases of COVID-19 in Italy'
 ylab<-"# People"
 xlab<-"Days since the beginning of data"
 #png(filename="/home/berenluth/Projects/covid19/export.png", width = 1000, height=500, units="px")
-#png(filename="export.png", width = 1000, height=650, units="px")
+png(filename="export.png", width = 1000, height=650, units="px")
 
 #ylim=x(0,40000) to change the plot scale to include number of tampons otherwise too big
 plot(cov.ts, ylab=ylab, main=main, xlab=xlab, type='l', xaxs='i')
