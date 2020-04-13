@@ -24,7 +24,7 @@ fit4<-lm(cov.ts~poly(tt,degree=3,raw=TRUE))
 lines(tt,predict(fit4),col="blue",lwd=1, type="c")
 lines(covid$dimessi_guariti,col="green",lwd=2, type="l")
 lines(covid$deceduti,col="red",lwd=2, type="l")
-lines(covid$tamponi,col="purple",lwd=2, type="l")
+#lines(covid$tamponi,col="purple",lwd=2, type="l")
 
 # legend("bottomright", legend = "First day: 24/02/2020")
 
