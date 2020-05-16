@@ -8,4 +8,4 @@ I don't have anything against the data of the official repository and how they'r
 - R
 
 ![example of result](https://github.com/BerenLuth/COVID-19-IT-new-positive/blob/master/example.png)
-_This is an example of the plot made in 24/03/2020_
+_This is an example of the plot made in 16/05/2020_
