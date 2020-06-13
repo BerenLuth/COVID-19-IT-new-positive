@@ -26,7 +26,7 @@ grid()
 #lines(covid$deceduti,col="red",lwd=2, type="l")
 #lines(covid$tamponi,col="purple",lwd=2, type="l")
 
-transparency=0.4
+transparency=0.6
 lwd=2
 
 f <- 7
