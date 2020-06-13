@@ -19,17 +19,37 @@ plot(cov.ts, ylab=ylab, main=main, xlab=xlab, type='l', xaxs='i')
 axis(1, covid$data, format(covid$data, "%b %d"))
 grid()
 #points(covid$totale_casi)
-tt<-as.numeric(time(cov.ts))
-fit4<-lm(cov.ts~poly(tt,degree=3,raw=TRUE))
-lines(tt,predict(fit4),col="blue",lwd=1, type="c")
-lines(covid$dimessi_guariti,col="green",lwd=2, type="l")
-lines(covid$deceduti,col="red",lwd=2, type="l")
+#tt<-as.numeric(time(cov.ts))
+#fit4<-lm(cov.ts~poly(tt,degree=3,raw=TRUE))
+#lines(tt,predict(fit4),col="blue",lwd=1, type="l")
+#lines(covid$dimessi_guariti,col="green",lwd=2, type="l")
+#lines(covid$deceduti,col="red",lwd=2, type="l")
 #lines(covid$tamponi,col="purple",lwd=2, type="l")
+
+transparency=0.4
+lwd=2
+
+f <- 7
+weights.s <- c(0.5, rep(1, f - 1), 0.5)/f
+
+trend.s <- filter(cov.ts, filter=weights.s,side=2)
+lines(trend.s,col='cornflowerblue',lwd=lwd, lty=3)
+
+lines(covid$dimessi_guariti,col="limegreen",lwd=transparency, type="l")
+trend.s <- filter(covid$dimessi_guariti, filter=weights.s,side=2)
+lines(trend.s,col='limegreen',lwd=lwd, lty=3)
+
+lines(covid$deceduti,col="red",lwd=transparency, type="l")
+trend.s <- filter(covid$deceduti, filter=weights.s,side=2)
+lines(trend.s,col='red',lwd=lwd, lty=3)
+
+
+
 
 # legend("bottomright", legend = "First day: 24/02/2020")
 
 legend("topleft",legend = c("New Positive","Recovered","Deaths", "Trend"),
-       col=c("black","green","red", "blue"),lwd=2,lty=c(1,1,1,2)) # lty sets the type of line
+       col=c("black","limegreen","red", "cornflowerblue"),lwd=2,lty=c(1,1,1,2)) # lty sets the type of line
 
 #dev.off()
 
