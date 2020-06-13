@@ -7,14 +7,18 @@ for(n in length(covid$totale_casi):2){
 }
 covid$data <- as.Date(covid$data)
 cov.ts<-ts(covid$totale_casi)
-main <- 'Daily data of "New positive" cases of COVID-19 in Italy'
+main <- paste('Daily data of cases of COVID-19 in Italy (24/02/2020 - ', format(Sys.Date(), format="%d/%m/%Y"), ')', sep='')
 ylab<-"# People"
 xlab<-"Days since the beginning of data"
 #png(filename="/home/berenluth/Projects/covid19/export.png", width = 1000, height=500, units="px")
 png(filename="export.png", width = 1000, height=650, units="px")
 
+
+transparency=0.6
+lwd=2
+
 #ylim=x(0,40000) to change the plot scale to include number of tampons otherwise too big
-plot(cov.ts, ylab=ylab, main=main, xlab=xlab, type='l', xaxs='i')
+plot(cov.ts, ylab=ylab, main=main, xlab=xlab, type='l', xaxs='i', col='black', lwd=transparency)
 #plot(cov.ts, ylab=ylab, main=main, xlab=xlab, type='l', xaxs='i', ylim=c(0,60000))
 axis(1, covid$data, format(covid$data, "%b %d"))
 grid()
@@ -26,14 +30,13 @@ grid()
 #lines(covid$deceduti,col="red",lwd=2, type="l")
 #lines(covid$tamponi,col="purple",lwd=2, type="l")
 
-transparency=0.6
-lwd=2
+
 
 f <- 7
 weights.s <- c(0.5, rep(1, f - 1), 0.5)/f
 
 trend.s <- filter(cov.ts, filter=weights.s,side=2)
-lines(trend.s,col='cornflowerblue',lwd=lwd, lty=3)
+lines(trend.s,col='black',lwd=lwd, lty=3)
 
 lines(covid$dimessi_guariti,col="limegreen",lwd=transparency, type="l")
 trend.s <- filter(covid$dimessi_guariti, filter=weights.s,side=2)
@@ -48,8 +51,8 @@ lines(trend.s,col='red',lwd=lwd, lty=3)
 
 # legend("bottomright", legend = "First day: 24/02/2020")
 
-legend("topleft",legend = c("New Positive","Recovered","Deaths", "Trend"),
-       col=c("black","limegreen","red", "cornflowerblue"),lwd=2,lty=c(1,1,1,2)) # lty sets the type of line
+legend("topleft",legend = c("New Positive","Recovered","Deaths"),
+       col=c("black","limegreen","red"),lwd=2,lty=c(1,1,1)) # lty sets the type of line
 
 #dev.off()
 
