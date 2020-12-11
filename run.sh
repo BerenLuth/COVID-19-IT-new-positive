@@ -2,6 +2,7 @@
 echo "downloading the latest data..."
 cd COVID-19
 git reset --hard origin/master
+git pull
 cd ..
 git add .
 git commit -m "updated submodule"
